@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Hoster - Main</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <style>
+        body {
+            background-color: #353636;
+            color: white;
+        }
+
+        p {
+            color: white;
+        }
+
+        b {
+            font-size: 28px;
+            color: white;
+        }
+
+        .webTitle {
+            color: white;
+            font-size: 20px;
+        }
+
+        .logout-btn {
+            vertical-align: middle;
+            text-align: left;
+            margin-left: 10px;
+        }
+
+        .nav-link {
+            color: white;
+        }
+
+        .nav-link:hover {
+            color: grey;
+        }
+
+        .navbar {
+            background-color: #2a2a2a;
+        }
+
+
+        div.main .center {
+            position: absolute;
+            top: 37%;
+            left: 0;
+            right: 0;
+            text-align: center;
+            text-transform: uppercase;
+            z-index: 15;
+
+        }
+
+        div.main .center p {
+            font-size: calc(22px + .5vw);
+            font-weight: 300;
+            color: #fff;
+            position: relative;
+            animation: showRight 1s;
+        }
+
+        @keyframes showRight {
+            from {
+                right: -100%;
+            }
+            to {
+                right: 0;
+            }
+        }
+
+
+        div.main .center h1 {
+            color: #fff;
+            font-size: calc(30px + 1.2vw);
+            font-weight: 700;
+            margin-bottom: 30px;
+            position: relative;
+            animation: showLeft 1s;
+            z-index: 1;
+        }
+
+        @keyframes showLeft {
+            from {
+                left: -100%;
+            }
+            to {
+                left: 0;
+            }
+        }
+
+        h1 span {
+            color: #028fcc;
+        }
+
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
+                 class="d-inline-block align-text-top bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
+                <path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"/>
+                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+            </svg>
+            <b class="webTitle">Hoster</b>
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/main">Main</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/files">Files</a>
+                </li>
+            </ul>
+        </div>
+
+        <div th:if="${username} == 'anonymousUser'">
+            <form th:action="@{/login}" method="get">
+                <input class="logout-btn btn btn-outline-success" type="submit" value="Sign In"/>
+            </form>
+        </div>
+        <div th:unless="${username} == 'anonymousUser'">
+            <form th:action="@{/logout}" method="post">
+                <input class="logout-btn btn btn-outline-success" type="submit" value="Sign Out"/>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+<div class="main">
+    <div class="center">
+        <h1>Welcome to the <span>hoster.net</span></h1>
+        <p>Nothing fancy, just file hosting</p>
+    </div>
+
+</div>
+
+
+</body>
+</html>
